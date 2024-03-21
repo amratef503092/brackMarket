@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "263416065917",
+    "project_id": "coin-5b807",
+    "storage_bucket": "coin-5b807.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:263416065917:android:d3b31062f91051aa34e614",
+        "android_client_info": {
+          "package_name": "com.example.renters"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCP4CdaVOSxAudnsjArcEhXV8AesDtNeto"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
