@@ -10,30 +10,24 @@ class LayoutScreen extends StatelessWidget {
   const LayoutScreen({super.key});
 
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return BlocConsumer<LayoutCubit, LayoutState>(
-      listener: (context, state) {
-      },
+      listener: (context, state) {},
       builder: (_, state) {
         var bloc = LayoutCubit.get(context);
         return Scaffold(
-    
           body: bloc.screens.map((e) => e).toList()[bloc.currentIndex],
-          bottomNavigationBar:
-          BottomNavigationBar(
+          bottomNavigationBar: BottomNavigationBar(
             onTap: (index) {
               LayoutCubit.get(context).changeIndex(index);
             },
             currentIndex: bloc.currentIndex,
             type: BottomNavigationBarType.fixed,
-            items:
-
-            [
-              // BottomNavigationBarItem(
-              //   icon: const Icon(Icons.home),
-              //   label: TextManager.home.tr(),
-              // ),
+            items: [
+              BottomNavigationBarItem(
+                icon: const Icon(Icons.newspaper),
+                label: TextManager.home.tr(),
+              ),
               BottomNavigationBarItem(
                 icon: const Icon(Icons.currency_pound),
                 label: TextManager.currency.tr(),
@@ -46,11 +40,10 @@ class LayoutScreen extends StatelessWidget {
                 icon: const Icon(Icons.currency_bitcoin),
                 label: TextManager.crypto.tr(),
               ),
-               BottomNavigationBarItem(
+              BottomNavigationBarItem(
                 icon: const Icon(Icons.person),
                 label: TextManager.profile.tr(),
               ),
-
             ],
           ),
         );
