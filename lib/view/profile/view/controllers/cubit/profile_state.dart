@@ -13,3 +13,13 @@ final class ProfileLoaded extends ProfileState
 }
 final class ProfileError extends ProfileState {}
 final class ProfileLogout extends ProfileState {}
+
+final class UpdateProfileSuccessfully extends ProfileState {
+  final UserModel profile;
+  UpdateProfileSuccessfully(this.profile);
+}
+final class UpdateProfileError extends ProfileState 
+{
+  final String message;
+  UpdateProfileError(this.message);
+}

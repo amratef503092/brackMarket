@@ -1,4 +1,3 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,122 +20,133 @@ class ProfileScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => getIt<ProfileCubit>()..getProfileInfo(),
       child: BlocConsumer<ProfileCubit, ProfileState>(
-        listener: (context, state) 
-        {
-          if(state is ProfileLoaded)
-          {
+        listener: (context, state) {
+          if (state is ProfileLoaded) {
             hideEasyLoading();
-            context.read<ProfileCubit>().emailController.text = state.profile.email!;
-            context.read<ProfileCubit>().firstName.text = state.profile.name! ;
-            context.read<ProfileCubit>().phoneController.text = state.profile.phone!;
-            context.read<ProfileCubit>().countryCode = state.profile.countryCode!;
-          }else if(state is ProfileLoading)
-          {
+            context.read<ProfileCubit>().emailController.text =
+                state.profile.email!;
+            context.read<ProfileCubit>().firstName.text = state.profile.name!;
+            context.read<ProfileCubit>().phoneController.text =
+                state.profile.phone!;
+            context.read<ProfileCubit>().countryCode =
+                state.profile.countryCode!;
+          } else if (state is ProfileLoading) {
             showEasyLoading();
-          }else if(state is ProfileError)
-          {
+          } else if (state is ProfileError) {
             EasyLoading.showError('Error');
-          }else if(state is ProfileLogout)
-          {
+          } else if (state is ProfileLogout) {
             hideEasyLoading();
-            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: 
-            (context) {
-              return const LoginScreen();
-            },
+            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+              builder: (context) {
+                return const LoginScreen();
+              },
             ), (route) => false);
+          } else if (state is ProfileLoading) {
+            showEasyLoading();
+          } else if (state is UpdateProfileSuccessfully) {
+            hideEasyLoading();
+            EasyLoading.showSuccess('Profile Updated Successfully');
+          } else if (state is UpdateProfileError) {
+            hideEasyLoading();
+            EasyLoading.showError(state.message);
           }
         },
         builder: (context, state) {
           ProfileCubit profileCubit = context.read<ProfileCubit>();
           return Scaffold(
               appBar: AppBar(
-                title:  Text( context.tr(TextManager.profile)),
+                title: Text(context.tr(TextManager.profile)),
                 actions: [
-                  IconButton(icon: const Icon(Icons.logout), onPressed: () 
-                  {
-                   profileCubit.logout();
-                  }),
+                  IconButton(
+                      icon: const Icon(Icons.logout),
+                      onPressed: () {
+                        profileCubit.logout();
+                      }),
                 ],
               ),
-              body: profileCubit.profile!=null?  
-              SizedBox(
-                width: 1.sw,
-                height: 1.sh,
-                child: Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(
-                          height: 20,
-                        ),
-                         Center(
-                           child: CircleAvatar(
-                            radius: 70,
-                            backgroundImage: NetworkImage(profileCubit.profile!.image!),
-                              ),
-                         ),
-                          const SizedBox(
-                          height: 20,
-                        ),
-                        customText(text: TextManager.nameUser),
-                          const SizedBox(
-                          height: 20,
-                        ),
-                        CustomTextFormField(
-                          labelText: context.tr(TextManager.nameUser),
-                        controller: profileCubit.firstName,
-                        focusNode: FocusNode()),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        customText(text: TextManager.email),
-                          const SizedBox(
-                          height: 20,
-                        ),
-                         CustomTextFormField(
-                          labelText: context.tr(TextManager.email),
-                        controller: profileCubit.emailController,
-                        focusNode: FocusNode()),
-                          const SizedBox(
-                          height: 20,
-                        ),
-                        customText(text: TextManager.phone),
+              body: profileCubit.profile != null
+                  ? SizedBox(
+                      width: 1.sw,
+                      height: 1.sh,
+                      child: Padding(
+                        padding: const EdgeInsets.all(18.0),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
                               const SizedBox(
-                          height: 20,
-                        ),
-                          IntlPhoneField(
-                        decoration:  
-                        InputDecoration
-                        (
-                        
-                          labelText: context.tr(TextManager.phone),
-                          
-                          border: const OutlineInputBorder(
-                            borderSide: BorderSide(),
+                                height: 20,
+                              ),
+                              Center(
+                                child: CircleAvatar(
+                                  radius: 70,
+                                  backgroundImage: NetworkImage(
+                                      profileCubit.profile!.image!),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              customText(text: TextManager.nameUser),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              CustomTextFormField(
+                                  labelText: context.tr(TextManager.nameUser),
+                                  controller: profileCubit.firstName,
+                                  focusNode: FocusNode()),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              customText(text: TextManager.email),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              CustomTextFormField(
+                                  labelText: context.tr(TextManager.email),
+                                  controller: profileCubit.emailController,
+                                  focusNode: FocusNode()),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              customText(text: TextManager.phone),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              IntlPhoneField(
+                                decoration: InputDecoration(
+                                  labelText: context.tr(TextManager.phone),
+                                  border: const OutlineInputBorder(
+                                    borderSide: BorderSide(),
+                                  ),
+                                ),
+                                initialValue: profileCubit.profile!.phone!,
+                                initialCountryCode: 'EG',
+                                onChanged: (phone) {
+                                  profileCubit.phoneController.text =
+                                      phone.completeNumber;
+                                  profileCubit.countryCode = phone.countryCode;
+                                },
+                              ),
+                              state is ProfileLoading
+                                  ? const Center(
+                                      child:
+                                          CircularProgressIndicator.adaptive(),
+                                    )
+                                  : ElevatedButton(
+                                      onPressed: () {
+                                        profileCubit.updateProfileInfo();
+                                      },
+                                      child:
+                                          customText(text: TextManager.save)),
+                            ],
                           ),
                         ),
-                        initialValue: profileCubit.profile!.phone!,
-                        initialCountryCode: 'EG',
-                        onChanged: (phone) 
-                        {
-                          profileCubit.phoneController.text = phone.completeNumber;
-                          profileCubit.countryCode = phone.countryCode;
-                        },
                       ),
-
-                      ElevatedButton(onPressed: ()
-                      {
-                        profileCubit.updateProfileInfo();
-                      
-                      }, 
-                      child:  customText(text: TextManager.save)),
-                      ],
-                    ),
-                  ),
-                ),
-              ) : const Center(child:   CircularProgressIndicator.adaptive(),)) ;
+                    )
+                  : const Center(
+                      child: CircularProgressIndicator.adaptive(),
+                    ));
         },
       ),
     );

@@ -6,70 +6,56 @@ import 'package:renters/view/profile/domain/repo/repo.dart';
 
 part 'profile_state.dart';
 
-class ProfileCubit extends Cubit<ProfileState> 
-{
+class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit(this.profileRepo) : super(ProfileInitial());
   ProfileRepo profileRepo;
   TextEditingController firstName = TextEditingController();
   TextEditingController lastName = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-  String ? phone;
-  String ?countryCode;
+  String? phone;
+  String? countryCode;
   UserModel? profile;
 
-  Future<void> updateProfileInfo() 
-  async
-  {
+  Future<void> updateProfileInfo() async {
     emit(ProfileLoading());
 
-    try
-    {
-      UserModel userModel 
-      =   profile!.copyWith(
-        name: firstName.text,
-        phone: phoneController.text,
-        countryCode: countryCode
-      );
+    try {
+      UserModel userModel = profile!.copyWith(
+          name: firstName.text,
+          phone: phoneController.text,
+          countryCode: countryCode);
       print(userModel.name);
-       FirebaseFirestore.instance.collection('user_info').
-       doc(profile!.id).
-       update(userModel.toJson());
-      print("Amrrrrrr");
-      emit(ProfileLoaded(userModel));
-    } on Exception catch (e) 
-    {
+      FirebaseFirestore.instance
+          .collection('user_info')
+          .doc(profile!.id)
+          .update(userModel.toJson());
+
+      emit(UpdateProfileSuccessfully(userModel));
+    } on Exception catch (e) {
       print(e);
-      emit(ProfileError());
+      emit(UpdateProfileError(e.toString()));
     }
-    
   }
-  Future<void> getProfileInfo()
-  async
-  {
+
+  Future<void> getProfileInfo() async {
     emit(ProfileLoading());
-    try
-    {
-       profile = await profileRepo.getProfile();
-       print(profile!.address);
+    try {
+      profile = await profileRepo.getProfile();
+      print(profile!.address);
       emit(ProfileLoaded(profile!));
-    }
-    catch(e)
-    {
+    } catch (e) {
       print(e);
       emit(ProfileError());
     }
   }
-  Future<void> logout()
-  async 
-  {
+
+  Future<void> logout() async {
     emit(ProfileLoading());
-    try{
+    try {
       await profileRepo.signOut();
       emit(ProfileLogout());
-    }
-    catch(e)
-    {
+    } catch (e) {
       print(e);
       emit(ProfileError());
     }

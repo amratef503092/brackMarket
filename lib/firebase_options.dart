@@ -59,4 +59,5 @@ class DefaultFirebaseOptions {
     projectId: 'coin-5b807',
     storageBucket: 'coin-5b807.appspot.com',
   );
+
 }
