@@ -26,9 +26,7 @@ class GoldPage extends StatelessWidget {
                   itemCount: currencyList.length,
                   widgetBuilder: (index) => 
                   CustomRowCard(
-                        currency: currencyList[index].name,
-                        price: currencyList[index].price.toStringAsFixed(2),
-                        logo: currencyList[index].logo,
+                    coinModel: currencyList[index],
                       )
                   ,
                 ),

@@ -35,9 +35,7 @@ class CryptoPage extends StatelessWidget {
                       return 
                       FadeInDown(
                         child: CustomRowCard(
-                          currency: cryptoList[index].name,
-                          price: cryptoList[index].price.toStringAsFixed(2),
-                          logo: cryptoList[index].logo,
+                          coinModel: cryptoList[index],
                         ),
                       );
                     },

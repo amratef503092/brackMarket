@@ -71,9 +71,7 @@ class HomePage extends StatelessWidget
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           return CustomRowCard(
-                            currency: currencyList[index].name,
-                            price: currencyList[index].price.toString(),
-                            logo: currencyList[index].logo,
+                            coinModel: currencyList[index],
                           );
                         },
                         separatorBuilder: (context, index) {

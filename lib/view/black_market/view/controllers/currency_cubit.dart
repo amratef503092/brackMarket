@@ -20,21 +20,25 @@ class CurrencyCubit extends Cubit<CurrencyState>
       name: TextManager.unitedStatesDollar,
       logo: AssetsManager.unitedStateLogo,
       price: 0,
+      url:  "https://www.tradingview.com/chart/?symbol=FX_IDC%3AUSDEGP"
     ),
     CoinModel(
       name: TextManager.euro,
       logo: AssetsManager.euroImage,
       price: 0,
+      url: "https://www.tradingview.com/chart/?symbol=FX_IDC%3AEUREGP",
     ),
     CoinModel(
       name: TextManager.biritch,
       logo: AssetsManager.biritch,
       price: 0,
+      url: "https://www.tradingview.com/chart/?symbol=FX_IDC%3AGBPEGP",
     ),
     CoinModel(
       name: TextManager.sudiaRiyal,
       logo: AssetsManager.sudiaRyal,
       price: 0,
+
     ),
   CoinModel(
       name: TextManager.kuwaiti,
@@ -47,6 +51,7 @@ class CurrencyCubit extends Cubit<CurrencyState>
       name: TextManager.emarates,
       logo: AssetsManager.emarates,
       price: 0,
+
     ),
      CoinModel(
       name: TextManager.qatar,

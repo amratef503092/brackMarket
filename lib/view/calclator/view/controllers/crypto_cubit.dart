@@ -12,31 +12,30 @@ class CryptoCubit extends Cubit<CryptoState> {
   CryptoCubit() : super(CryptoInitial());
   DataCoinRepo dataCoinRepo = DataCoinRepoImpl();
   List<CoinModel> currencyList = [
+    // CoinModel(
+    //   name: TextManager.usdt,
+    //   logo: AssetsManager.usdtImage,
+    //   price: 0,
+    // ),
     CoinModel(
-      name: TextManager.usdt,
-      logo: AssetsManager.usdtImage,
-      price: 0,
-    ),
-    CoinModel(
-      name: TextManager.bitCoinTitle,
-      logo: AssetsManager.bitcoin,
-      price:0,
-    ),
+        name: TextManager.bitCoinTitle,
+        logo: AssetsManager.bitcoin,
+        price: 0,
+        url: "https://www.tradingview.com/chart/?symbol=BITSTAMP%3ABTCUSD"),
     CoinModel(
       name: TextManager.ethereumTitle,
       logo: AssetsManager.ethereum,
       price: 0,
+      url: "https://www.tradingview.com/chart/?symbol=BITSTAMP%3AETHUSD",
     ),
   ];
-  void getCryptoData() async 
-  {
+  void getCryptoData() async {
     emit(CryptoLoading());
     final result = await dataCoinRepo.getCyraptoData();
     result.fold((l) {
       print(l.message);
       emit(CryptoError(l.message));
-    }, (r)
-    {
+    }, (r) {
       List<Map<String, dynamic>> list = List<Map<String, dynamic>>.from(r);
       print(list);
       currencyList = [
@@ -48,7 +47,7 @@ class CryptoCubit extends Cubit<CryptoState> {
         CoinModel(
           name: TextManager.bitCoinTitle,
           logo: AssetsManager.bitcoin,
-          price:double.parse(list[2]['BTCUSDT']['high']),
+          price: double.parse(list[2]['BTCUSDT']['high']),
         ),
         CoinModel(
           name: TextManager.ethereumTitle,

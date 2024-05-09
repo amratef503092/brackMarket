@@ -8,32 +8,30 @@ import '../../../../core/utility/text_manager/text_manger.dart';
 
 part 'gold_state.dart';
 
-class GoldCubit extends Cubit<GoldState> 
-{
+class GoldCubit extends Cubit<GoldState> {
   GoldCubit() : super(GoldInitial());
   GoldRepo dataCoinRepo = GoldRepoImpl();
-  List<CoinModel> currencyList =
-  [
+  List<CoinModel> currencyList = [
     CoinModel(
-      name: TextManager.kartGold24,
-      logo: AssetsManager.coin,
-      price: 0,
-    ),
+        name: TextManager.kartGold24,
+        logo: AssetsManager.coin,
+        price: 0,
+        url: "https://www.investing.com/currencies/xau-egp-chart"),
     CoinModel(
-      name: TextManager.kartGold22,
-      logo: AssetsManager.coin,
-      price: 0,
-    ),
+        name: TextManager.kartGold22,
+        logo: AssetsManager.coin,
+        price: 0,
+        url: "https://www.investing.com/currencies/xau-egp-chart"),
     CoinModel(
-      name: TextManager.kartGold21,
-      logo: AssetsManager.coin,
-      price:0,
-    ),
+        name: TextManager.kartGold21,
+        logo: AssetsManager.coin,
+        price: 0,
+        url: "https://www.investing.com/currencies/xau-egp-chart"),
     CoinModel(
-      name: TextManager.kartGold18,
-      logo: AssetsManager.coin,
-      price: 0,
-    ),
+        name: TextManager.kartGold18,
+        logo: AssetsManager.coin,
+        price: 0,
+        url: "https://www.investing.com/currencies/xau-egp-chart"),
     // CoinModel(
     //   name: TextManager.kartGold12,
     //   logo: AssetsManager.coin,
@@ -49,22 +47,18 @@ class GoldCubit extends Cubit<GoldState>
     //   logo: AssetsManager.coin,
     //   price: 0,
     // ),
-
   ];
-  void getGoldData() async
-  {
+  void getGoldData() async {
     emit(GoldLoading());
     final result = await dataCoinRepo.getGoldData();
-    result.fold((l) => emit(GoldError(message: l.message)), (r) 
-    {
-      for (int i = 0; i < currencyList.length; i++)
-      {
-       r[i].forEach((key, value)
-        {
-          currencyList[i] = currencyList[i].copyWith(price: double.parse(value));
-         }); 
-      }
+    result.fold((l) => emit(GoldError(message: l.message)), (r) {
+      for (int i = 0; i < currencyList.length; i++) {
+        r[i].forEach((key, value) {
+          currencyList[i] =
+              currencyList[i].copyWith(price: double.parse(value));
         });
-        emit(GoldLoaded());
+      }
+    });
+    emit(GoldLoaded());
   }
 }

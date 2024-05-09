@@ -34,9 +34,7 @@ class CurrencyPage extends StatelessWidget {
                widgetBuilder: 
                 (index) {
                 return   CustomRowCard(
-                      currency: currencyList[index].name,
-                      price: currencyList[index].price.toString(),
-                      logo: currencyList[index].logo,
+                      coinModel: currencyList[index],
                     );
                     }
                     ),
