@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 import 'package:renters/view/auth/login/data/repo_impl/repo_impl.dart';
 import 'package:renters/view/auth/login/domain/repo/login_repo.dart';
 

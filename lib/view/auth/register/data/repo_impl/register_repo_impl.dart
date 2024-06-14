@@ -1,10 +1,8 @@
 
 
-import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:renters/view/auth/register/domain/repo/register_repo.dart';
 
-import '../../../../../core/error/failuar.dart';
 import '../../../../../core/services/firebase_auth_service/firebase_auth_service.dart';
 
 class RegisterRepoImpl extends RegisterRepo {

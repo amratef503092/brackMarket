@@ -5,7 +5,6 @@ import 'package:renters/core/utility/text_manager/text_manger.dart';
 import 'package:renters/view/black_market/data/repo/currency_repo.dart';
 
 import '../../../../core/models/coin_model.dart';
-import '../../../../data/repo/repo.dart';
 
 part 'currency_state.dart';
 

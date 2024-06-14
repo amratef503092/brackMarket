@@ -36,15 +36,13 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 void onDidReceiveLocalNotification(
-    int id, String? title, String? body, String? payload) async 
-    {
+    int id, String? title, String? body, String? payload) async {
   // display a dialog with the notification details, tap ok to go to another page
-        print("onDidReceiveLocalNotification");
-    }
+  print("onDidReceiveLocalNotification");
+}
 
 void onDidReceiveNotificationResponse(
-    NotificationResponse notificationResponse) async 
-    {
+    NotificationResponse notificationResponse) async {
   final String? payload = notificationResponse.payload;
   if (notificationResponse.payload != null) {
     debugPrint('notification payload: $payload');
@@ -86,14 +84,14 @@ void main() async {
 
   String? token = await messaging.getToken();
 
-  print("===============> token " + token!);
+  print("===============> token ${token!}");
 
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     flutterLocalNotificationsPlugin.show(
       message.notification.hashCode,
       message.notification!.title,
       message.notification!.body,
-      NotificationDetails(
+      const NotificationDetails(
         android: AndroidNotificationDetails(
           '1',
           'channelName',
@@ -113,7 +111,7 @@ void main() async {
   const AndroidInitializationSettings initializationSettingsAndroid =
       AndroidInitializationSettings('@mipmap/ic_launcher');
 
-  final InitializationSettings initializationSettings = InitializationSettings(
+  const InitializationSettings initializationSettings = InitializationSettings(
     android: initializationSettingsAndroid,
   );
 
@@ -163,6 +161,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
+    super.initState();
     setupInteractedMessage();
   }
 
@@ -195,7 +194,6 @@ class _MyAppState extends State<MyApp> {
                     locale: context.locale,
                     title: 'Flutter Demo',
                     theme: theme.isDark ? darkTheme : lightTheme,
-                    
                     home: child,
                     debugShowCheckedModeBanner: false,
                   );

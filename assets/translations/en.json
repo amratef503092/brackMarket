@@ -34,5 +34,7 @@
   "Bitcoin": "Bitcoin",
   "Ethereum": "Ethereum",
   "EGP" : "{} EGP",
-  "CHF" : "CHF"
+  "CHF" : "CHF",
+  "USD" : "USD {}"
+
 }

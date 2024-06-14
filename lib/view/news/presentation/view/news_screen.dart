@@ -17,16 +17,16 @@ class NewsScreen extends StatelessWidget {
         },
         builder: (context, state) {
           if (state is NewsLoading) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (state is NewsError) {
-            return Center(child: Text('Error'));
+            return const Center(child: Text('Error'));
           } else if (state is NewsLoaded) {
             return Scaffold(
                 appBar: appBarCustom(context),
                 body: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ListView.separated(
-                      itemCount: state.news.data!.length,
+                      itemCount: state.news.articles!.length,
                       separatorBuilder: (context, index) {
                         return const SizedBox(height: 10);
                       },
@@ -46,13 +46,13 @@ class NewsScreen extends StatelessWidget {
 
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
-                                      image: NetworkImage(
-                                          state.news.data![index].image!),
+                                      image: NetworkImage(state
+                                          .news.articles![index].urlToImage!),
                                       fit: BoxFit.cover,
                                     ),
                                   )),
                               ListTile(
-                                title: Text(state.news.data![index].title!),
+                                title: Text(state.news.articles![index].title!),
                                 // subtitle: Text('Subtitle'),
                               ),
                             ],

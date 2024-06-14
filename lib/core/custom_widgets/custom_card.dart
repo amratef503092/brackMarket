@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../utility/style_text_manager/text_style_manager.dart';
 import 'custom_text.dart';
 class CustomCard extends StatelessWidget {
   const CustomCard({

@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:renters/core/utility/color_manager/color_manager.dart';
 
 ThemeData darkTheme = ThemeData.dark().copyWith(
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
-      backgroundColor: MaterialStateProperty.all<Color>(ColorManager.primaryColor),
-      maximumSize: MaterialStateProperty.all<Size>(Size(1.sw, 50.h)),
-      minimumSize: MaterialStateProperty.all<Size>(Size(1.sw, 50.h)),
-      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+      backgroundColor: WidgetStateProperty.all<Color>(ColorManager.primaryColor),
+      maximumSize: WidgetStateProperty.all<Size>(Size(1.sw, 50.h)),
+      minimumSize: WidgetStateProperty.all<Size>(Size(1.sw, 50.h)),
+      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),

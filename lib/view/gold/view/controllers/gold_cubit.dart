@@ -54,8 +54,8 @@ class GoldCubit extends Cubit<GoldState> {
     result.fold((l) => emit(GoldError(message: l.message)), (r) {
       for (int i = 0; i < currencyList.length; i++) {
         r[i].forEach((key, value) {
-          currencyList[i] =
-              currencyList[i].copyWith(price: double.parse(value));
+          currencyList[i] = currencyList[i]
+              .copyWith(price: value['buy_price_change'].split(" ")[0]);
         });
       }
     });

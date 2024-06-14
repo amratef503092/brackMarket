@@ -5,7 +5,6 @@ import 'package:renters/core/services/firebase_storage_service/firebase_storage_
 import 'package:renters/view/auth/login/data/repo_impl/repo_impl.dart';
 import 'package:renters/view/auth/register/presentation_layer/controller/register_cubit/cubit/register_cubit.dart';
 import 'package:renters/view/profile/data/profile_repo.dart';
-import 'package:renters/view/profile/domain/repo/repo.dart';
 import '../../view/auth/login/presentation_layer/controller/cubit/cubit/login_cubit.dart';
 import '../../view/auth/register/data/repo_impl/register_repo_impl.dart';
 import '../../view/profile/view/controllers/cubit/profile_cubit.dart';

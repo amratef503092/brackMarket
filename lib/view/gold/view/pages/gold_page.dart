@@ -11,26 +11,30 @@ class GoldPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<GoldCubit, GoldState>(
-      listener: (context, state) 
-      {
-        
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         var currencyList = context.read<GoldCubit>().currencyList;
         return Scaffold(
             appBar: appBarCustom(context),
+            bottomSheet: Container(
+              height: 50,
+              color: Colors.blue,
+              child: ElevatedButton(
+                onPressed: () {
+                  context.read<GoldCubit>().getGoldData();
+                },
+                child: const Text("Refresh"),
+              ),
+            ),
             body: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: 
-                CustomGrideView(
-                  itemCount: currencyList.length,
-                  widgetBuilder: (index) => 
-                  CustomRowCard(
-                    coinModel: currencyList[index],
-                      )
-                  ,
+              padding: const EdgeInsets.all(8.0),
+              child: CustomGrideView(
+                itemCount: currencyList.length,
+                widgetBuilder: (index) => CustomRowCard(
+                  coinModel: currencyList[index],
                 ),
-             ));
+              ),
+            ));
       },
     );
   }

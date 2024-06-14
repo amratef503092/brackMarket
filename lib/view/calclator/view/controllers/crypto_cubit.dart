@@ -20,12 +20,12 @@ class CryptoCubit extends Cubit<CryptoState> {
     CoinModel(
         name: TextManager.bitCoinTitle,
         logo: AssetsManager.bitcoin,
-        price: 0,
+        price: "0",
         url: "https://www.tradingview.com/chart/?symbol=BITSTAMP%3ABTCUSD"),
     CoinModel(
       name: TextManager.ethereumTitle,
       logo: AssetsManager.ethereum,
-      price: 0,
+      price: "0",
       url: "https://www.tradingview.com/chart/?symbol=BITSTAMP%3AETHUSD",
     ),
   ];
@@ -36,8 +36,6 @@ class CryptoCubit extends Cubit<CryptoState> {
       print(l.message);
       emit(CryptoError(l.message));
     }, (r) {
-      List<Map<String, dynamic>> list = List<Map<String, dynamic>>.from(r);
-      print(list);
       currencyList = [
         // CoinModel(
         //   name: TextManager.usdt,
@@ -47,12 +45,12 @@ class CryptoCubit extends Cubit<CryptoState> {
         CoinModel(
           name: TextManager.bitCoinTitle,
           logo: AssetsManager.bitcoin,
-          price: double.parse(list[2]['BTCUSDT']['high']),
+          price: r['bitcoin']['usd'].toString(),
         ),
         CoinModel(
           name: TextManager.ethereumTitle,
           logo: AssetsManager.ethereum,
-          price: double.parse(list[0]['ETHUSDT']['high']),
+          price: r['ethereum']['usd'].toString(),
         ),
       ];
       emit(CryptoLoaded());

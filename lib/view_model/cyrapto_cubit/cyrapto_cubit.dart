@@ -7,10 +7,10 @@ part 'cyrapto_state.dart';
 class CyraptoCubit extends Cubit<CyraptoState> {
   CyraptoCubit() : super(CyraptoInitial());
   DataCoinRepo dataCoinRepo = DataCoinRepoImpl();
-  void getCyraptoData() async
-  {
+
+  void getCyraptoData() async {
     emit(CyraptoLoading());
-    final result = await dataCoinRepo.getCyraptoData();
-    result.fold((l) => emit(CyraptoError(l.message)), (r) => emit(CyraptoLoaded(r)));
+    // final result = await dataCoinRepo.getCyraptoData();
+    // result.fold((l) => emit(CyraptoError(l.message)), (r) => emit(CyraptoLoaded(r)));
   }
 }

@@ -95,7 +95,7 @@ class DioHelper {
       debugPrint('response is => ${response.data}');
       debugPrint("-------------Response Data----------------");
       return response;
-    } on DioError catch (e) {
+    } on DioError {
       // debugPrint("-------------Error Data----------------");
       // debugPrint('error is => ${e.response!.data}');
       // debugPrint("-------------Error Data----------------");
@@ -137,7 +137,7 @@ class DioHelper {
       debugPrint('response is => ${response.data}');
       debugPrint("-------------Response Data----------------");
       return response;
-    } on DioError catch (e) {
+    } on DioError {
       rethrow;
     }
   }
